@@ -22,14 +22,13 @@ app.post("/create-checkout-session", async (req, res) => {
       product_data: {
         name: item.name,
       },
-      unit_amount: item.price * 100, // ✅ spelling fixed here
+      unit_amount: item.price * 100,
     },
     quantity: item.quantity,
   }));
 
   try {
     const session = await stripe.checkout.sessions.create({
-      // ✅ also fix `checkout.session` -> `checkout.sessions`
       payment_method_types: ["card"],
       mode: "payment",
       line_items: lineItems,
